@@ -55,6 +55,7 @@ const authController = {
 
   // LOGIN
   loginUser: async (req, res) => {
+    console.log("req", req);
     try {
       const user = await User.findOne({ email: req.body.email });
 
@@ -97,7 +98,7 @@ const authController = {
     } catch (error) {
       res.status(500).json({
         EC: -2,
-        data: error,
+        data: req,
       });
     }
   },
