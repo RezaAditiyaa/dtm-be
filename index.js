@@ -22,7 +22,6 @@ app.get("/", (req, res) => {
 app.use("/v1/api/auth", authRouter);
 
 // ROUTES
-
 app.use("/v1/api/trello", trelloRouter);
 
 // Connect to DB

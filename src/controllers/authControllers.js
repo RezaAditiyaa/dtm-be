@@ -22,6 +22,11 @@ const authController = {
         username: req.body.username,
         password: hashed,
         phone: req.body.phone,
+        board: {
+          id: `board-${Date.now()}`,
+          columnOrder: [],
+          columns: [],
+        },
       });
 
       //Save to DB
@@ -167,6 +172,29 @@ const authController = {
     } catch (error) {
       res.status(500).json({
         EC: -2,
+        data: error,
+      });
+    }
+  },
+
+  //EDIT BOARD
+  editBoard: async (req, res) => {
+    let userId = req.body.UserId;
+    let boardLS = req.body.board;
+    let user = await User.findById(userId);
+    if (user) {
+      user.board = boardLS;
+    }
+    let new_user = await user.save();
+    console.log("new_user>>>", new_user);
+    try {
+      res.status(200).json({
+        EC: 0,
+        data: new_user,
+      });
+    } catch (error) {
+      res.status(500).json({
+        EC: 1,
         data: error,
       });
     }

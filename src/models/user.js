@@ -19,6 +19,14 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    board: {
+      type: Object,
+      required: true,
+      // id: { type: String },
+      // columnOrder: [{ type: String }],
+      // columns: [{ type: String }],
+      // required: true,
+    },
   },
   { timestamps: true }
 );
