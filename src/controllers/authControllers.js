@@ -179,6 +179,8 @@ const authController = {
 
   //EDIT BOARD
   editBoard: async (req, res) => {
+    let categoryName = req.params.name;
+    console.log("categoryName>>>", categoryName);
     let userId = req.body.UserId;
     let boardLS = req.body.board;
     let user = await User.findById(userId);

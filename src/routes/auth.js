@@ -26,6 +26,6 @@ authRouter.get(
 );
 
 //EDIT BOARD
-authRouter.put("/board", authController.editBoard);
+authRouter.put("/board/:name", authController.editBoard);
 
 module.exports = authRouter;
