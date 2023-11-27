@@ -179,10 +179,30 @@ const authController = {
 
   //EDIT BOARD
   editBoard: async (req, res) => {
-    let categoryName = req.params.name;
-    console.log("categoryName>>>", categoryName);
+    let boardLS;
     let userId = req.body.UserId;
-    let boardLS = req.body.board;
+    let categoryName = req.params.name;
+    switch (categoryName) {
+      case "addCard":
+        boardLS = req.body.newCard.board;
+        break;
+      case "addColumn":
+        boardLS = req.body.newColumn.board;
+        break;
+      case "deleteCard":
+        boardLS = req.body.idCard.board;
+        break;
+      case "deleteColumn":
+        boardLS = req.body.idColumn.board;
+        break;
+      case "editTitle":
+        boardLS = req.body.edit.board;
+        break;
+      case "swag":
+        boardLS = req.body.swagInfor.board;
+        break;
+    }
+
     let user = await User.findById(userId);
     if (user) {
       user.board = boardLS;
